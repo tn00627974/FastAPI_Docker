@@ -19,7 +19,7 @@
 
 1. 克隆此儲存庫：
     ```bash
-    git clone https://github.com/yourusername/fastapi_docker.git
+    git clone git@github.com:tn00627974/FastAPI_Docker.git
     ```
 2. 進入專案目錄：
     ```bash
