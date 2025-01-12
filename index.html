@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>請上傳動物圖片進行提問！</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="row">
+                <div class="six columns">
+                    <label for="image">Upload Image</label>
+                    <input class="u-full-width" type="file" id="image" name="image" accept="image/*" required>
+                </div>
+                <div class="six columns">
+                    <label for="question">Enter Question</label>
+                    <input class="u-full-width" type="text" id="question" name="question" required>
+                </div>
+            </div>
+            <input class="button-primary" type="submit" value="Submit">
+        </form>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const response = await fetch('/predict', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').innerText = `預測結果: ${result.result}`;
+        });
+    </script>
+</body>
+
+</html>
