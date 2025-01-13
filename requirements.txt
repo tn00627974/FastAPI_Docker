@@ -1,0 +1,8 @@
+fastapi[standard]>=0.110.3
+googletrans==4.0.0rc1
+jupyter>=1.1.1
+pillow>=11.1.0
+python-multipart>=0.0.20
+torch>=2.5.1
+transformers>=4.48.0
+uvicorn>=0.34.0
