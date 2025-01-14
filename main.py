@@ -1,5 +1,5 @@
 from fastapi import FastAPI, UploadFile, Request, Form
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
 from typing import Union
 from model import model_pipeline
 from PIL import Image
@@ -14,12 +14,13 @@ def read_root():
     return FileResponse("index.html")
 
 
-@app.post("/predict", response_class=HTMLResponse)
-def predict(question: str = Form(...), image: UploadFile = Form(...)):
-    image_data = image.file.read()
-    image = Image.open(BytesIO(image_data))
+@app.post("/predict", response_class=JSONResponse)
+async def predict(request: Request):
+    form = await request.form()
+    question = form["question"]
+    image = Image.open(form["image"].file)
     result = model_pipeline(question, image)
-    return result.text
+    return {"result": result}  # 返回 JSON 格式的預測結果
 
 
 if __name__ == "__main__":
