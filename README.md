@@ -27,8 +27,14 @@
     ```
 3. 建立並啟動 Docker 容器：
     ```bash
-    docker-compose up --build
+    docker build -t fastapi-app .
     ```
+4. 啟動 :
+    ```bash
+    docker run -p 8000:8000 fastapi-app
+    ```
+    
+
 
 ## 使用方法
 
@@ -78,6 +84,7 @@ fastapi_docker/
 
 - [FastAPI 官方文檔](https://fastapi.tiangolo.com/)
 - [Docker 官方文檔](https://docs.docker.com/)
+- [uv 官方文檔](https://docs.astral.sh/uv/guides/integration/fastapi/#deployment)
 
 
 

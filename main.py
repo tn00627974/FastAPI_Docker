@@ -23,6 +23,12 @@ async def predict(request: Request):
     return {"result": result}  # 返回 JSON 格式的預測結果
 
 
+# 新增健康檢查路由
+@app.get("/health", response_class=JSONResponse)
+def health_check():
+    return {"status": "ok"}
+
+
 if __name__ == "__main__":
     import uvicorn
 
