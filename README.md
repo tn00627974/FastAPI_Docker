@@ -2,6 +2,8 @@
 
 本專案展示如何使用 FastAPI 和 Docker 建立機器學習應用程式。
 
+![alt text](image.png)
+
 ## 目錄
 
 - [專案介紹](#專案介紹)
